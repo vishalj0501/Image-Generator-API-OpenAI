@@ -30,9 +30,10 @@ class ImageGenerator:
     def __init__(self):
         openai.api_key = os.getenv("API_KEY")
         self.APIKey=openai.api_key
+        self.imageURL=str
 
     def generateImage(self,description:Description):
-        openai.api_key = self.APIKey
+        self.APIKey
         response=openai.Image.create(
         prompt = description.prompt,
         n = description.n,
