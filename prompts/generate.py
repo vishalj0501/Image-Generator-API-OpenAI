@@ -4,6 +4,7 @@ import openai
 import json
 from dotenv import load_dotenv
 from models.model import Description
+from fastapi.responses import JSONResponse
 
 load_dotenv()
 
@@ -17,14 +18,18 @@ class ImageGenerator:
         self.imageURL=str
 
     def generateImage(self,description:Description):
-        self.APIKey
-        response=openai.Image.create(
-        prompt = description.prompt,
-        n = description.n,
-        size = description.squareSize,
-        )
-        self.imageURL= response['data']
-        self.imageURL=[image['url'] for image in self.imageURL]
+        try:       
+            self.APIKey
+            response=openai.Image.create(
+                prompt = description.prompt,
+                n = description.n,
+                size = description.squareSize,
+            )
+            self.imageURL= response['data']
+            self.imageURL=[image['url'] for image in self.imageURL]
+            return JSONResponse(content=self.imageURL)
+        except:
+            return JSONResponse(content="API Key not found")
 
 
 generate=ImageGenerator()
