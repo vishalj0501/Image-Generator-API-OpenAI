@@ -1,8 +1,6 @@
 from prompts.generate import ImageGenerator
 from fastapi import FastAPI, APIRouter
-from fastapi.responses import JSONResponse
 import sys
-import os
 from dotenv import load_dotenv
 import uvicorn
 
@@ -33,5 +31,6 @@ if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1",
                 port=8000,
                 # log_level="info",
-                reload=True)
+                reload=True
+            )
                 
